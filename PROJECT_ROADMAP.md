@@ -10,16 +10,39 @@
 ---
 
 ## Phase 2 - Backend
+
 - [x] Create Spring Boot Project
 - [x] Configure Maven
-- [ ] Configure MySQL
+- [x] Configure MySQL
 - [x] Create Project Structure
-- [ ] Authentication Module
-- [ ] User Management
-- [ ] Role Management
-- [ ] Candidate Module
-- [ ] Job Module
-- [ ] Resume Module
+
+### User Module
+- [x] Create User Entity
+- [ ] Create User Repository
+- [ ] Create User Request DTO
+- [ ] Create User Response DTO
+- [ ] Create User Service
+- [ ] Create User Controller
+- [ ] Test User APIs
+
+### Authentication
+- [ ] JWT Authentication
+- [ ] Login API
+- [ ] Register API
+
+### Candidate Module
+- [ ] Candidate Entity
+- [ ] Candidate APIs
+
+### Job Module
+- [ ] Job Entity
+- [ ] Job APIs
+
+### Resume Module
+- [ ] Resume Upload
+- [ ] Resume APIs
+
+### Dashboard
 - [ ] Dashboard APIs
 
 ---
