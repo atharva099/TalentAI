@@ -18,7 +18,7 @@
 
 ### User Module
 - [x] Create User Entity
-- [ ] Create User Repository
+- [x] Create User Repository
 - [ ] Create User Request DTO
 - [ ] Create User Response DTO
 - [ ] Create User Service
