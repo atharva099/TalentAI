@@ -7,7 +7,8 @@ package com.talentai.security;
  */
 public enum UserRole {
 
-    ADMIN,
+    CANDIDATE,
     RECRUITER,
-    CANDIDATE
+    COMPANY_ADMIN,
+    PLATFORM_ADMIN
 }

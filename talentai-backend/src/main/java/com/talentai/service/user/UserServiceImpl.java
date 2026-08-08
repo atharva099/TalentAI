@@ -10,10 +10,13 @@ import org.springframework.transaction.annotation.Transactional;
 import com.talentai.dto.request.UserRequest;
 import com.talentai.dto.request.UserUpdateRequest;
 import com.talentai.dto.response.UserResponse;
+import com.talentai.entity.Role;
 import com.talentai.entity.User;
 import com.talentai.exception.ApplicationException;
 import com.talentai.exception.ErrorCode;
+import com.talentai.repository.RoleRepository;
 import com.talentai.repository.UserRepository;
+import com.talentai.security.UserRole;
 
 import lombok.RequiredArgsConstructor;
 
@@ -25,6 +28,7 @@ import lombok.RequiredArgsConstructor;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
     private final BCryptPasswordEncoder passwordEncoder;
 
     /**
@@ -42,9 +46,15 @@ public class UserServiceImpl implements UserService {
         User user = UserMapper.toEntity(request);
         user.setEmail(normalizedEmail);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.getRoles().add(loadCandidateRole());
 
         User savedUser = userRepository.save(user);
         return UserMapper.toResponse(savedUser);
+    }
+
+    private Role loadCandidateRole() {
+        return roleRepository.findByName(UserRole.CANDIDATE)
+                .orElseThrow(() -> new ApplicationException(ErrorCode.SYSTEM_INTERNAL_ERROR));
     }
 
     /**

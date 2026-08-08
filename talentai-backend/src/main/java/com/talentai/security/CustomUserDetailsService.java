@@ -1,7 +1,10 @@
 package com.talentai.security;
 
+import java.util.Collection;
 import java.util.Locale;
+import java.util.stream.Collectors;
 
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -34,9 +37,13 @@ public class CustomUserDetailsService implements UserDetailsService {
         User user = userRepository.findByEmail(normalizedEmail)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found."));
 
+        Collection<SimpleGrantedAuthority> authorities = user.getRoles().stream()
+                .map(role -> new SimpleGrantedAuthority("ROLE_" + role.getName().name()))
+                .collect(Collectors.toList());
+
         return org.springframework.security.core.userdetails.User.withUsername(user.getEmail())
                 .password(user.getPassword())
-                .roles(UserRole.CANDIDATE.name())
+                .authorities(authorities)
                 .build();
     }
 }
