@@ -24,3 +24,6 @@ hs_err_pid*
 replay_pid*
 
 TalentAI_Documentation/
+
+# Environment variables
+.env
