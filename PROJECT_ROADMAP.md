@@ -31,19 +31,19 @@
 - [ ] Register API
 
 ### Candidate Module
-- [ ] Candidate Entity
-- [ ] Candidate APIs
+- [x] Candidate Entity
+- [x] Candidate APIs
 
 ### Job Module
-- [ ] Job Entity
-- [ ] Job APIs
+- [x] Job Entity
+- [x] Job APIs
 
 ### Resume Module
-- [ ] Resume Upload
-- [ ] Resume APIs
+- [x] Resume Upload
+- [x] Resume APIs
 
 ### Dashboard
-- [ ] Dashboard APIs
+- [x] Dashboard APIs
 
 ---
 

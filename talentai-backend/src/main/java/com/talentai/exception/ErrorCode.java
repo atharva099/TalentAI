@@ -26,6 +26,7 @@ public enum ErrorCode {
     REQUEST_INVALID(HttpStatus.BAD_REQUEST, "The request is invalid."),
 
     CANDIDATE_NOT_FOUND(HttpStatus.NOT_FOUND, "Candidate not found."),
+    CANDIDATE_ALREADY_EXISTS(HttpStatus.CONFLICT, "A candidate with the supplied email already exists."),
     COMPANY_NOT_FOUND(HttpStatus.NOT_FOUND, "Company not found."),
     JOB_NOT_FOUND(HttpStatus.NOT_FOUND, "Job not found."),
     RESUME_NOT_FOUND(HttpStatus.NOT_FOUND, "Resume not found."),
