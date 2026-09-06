@@ -19,16 +19,21 @@
 ### User Module
 - [x] Create User Entity
 - [x] Create User Repository
-- [ ] Create User Request DTO
-- [ ] Create User Response DTO
-- [ ] Create User Service
-- [ ] Create User Controller
-- [ ] Test User APIs
+- [x] Create User Request DTO
+- [x] Create User Response DTO
+- [x] Create User Service
+- [x] Create User Controller
+- [x] Test User APIs
 
 ### Authentication
-- [ ] JWT Authentication
-- [ ] Login API
-- [ ] Register API
+- [x] JWT Authentication
+- [x] Login API
+- [x] Register API
+
+### Role-Based Access Control
+- [x] Persist CANDIDATE, RECRUITER, COMPANY_ADMIN, and PLATFORM_ADMIN roles
+- [x] Assign roles during registration and load persisted authorities
+- [x] Protect role-restricted APIs
 
 ### Candidate Module
 - [x] Candidate Entity
@@ -39,11 +44,21 @@
 - [x] Job APIs
 
 ### Resume Module
-- [x] Resume Upload
-- [x] Resume APIs
+- [x] Resume Metadata Entity
+- [x] Resume Metadata APIs
+- [ ] Resume File/Cloud Storage
+- [ ] Resume Parsing
 
 ### Dashboard
 - [x] Dashboard APIs
+
+### Backend Verification
+- [x] Core backend modules complete
+- [x] 31 automated tests passing with 0 failures and 0 errors
+- [x] API testing with Bruno
+
+The core recruitment backend is complete and ready for frontend integration. File storage,
+resume parsing, AI analysis, interview scheduling, and advanced reporting remain future work.
 
 ---
 
@@ -54,7 +69,7 @@
 - [ ] Dashboard
 - [ ] Candidate Management
 - [ ] Job Management
-- [ ] Resume Upload
+- [ ] Resume Metadata Management
 - [ ] Reports
 
 ---
@@ -64,10 +79,17 @@
 - [ ] Resume Scoring
 - [ ] Candidate Ranking
 - [ ] AI Suggestions
+- [ ] Advanced Resume Processing
 
 ---
 
-## Phase 5 - Deployment
+## Phase 5 - Additional Product Features
+- [ ] Interview Scheduling
+- [ ] Advanced Reporting
+
+---
+
+## Phase 6 - Deployment
 - [ ] Testing
 - [ ] Docker
 - [ ] CI/CD
