@@ -30,7 +30,9 @@
 - Resume metadata module
 - Dashboard summary API
 
-The core recruitment backend modules are complete and ready for frontend integration.
+The core recruitment backend modules are complete. The backend includes CORS configuration
+for the local frontend and supports the authenticated current-user endpoint at
+`GET /api/v1/auth/me`.
 
 ## Resume Scope
 
@@ -39,7 +41,7 @@ resume parsing, and AI resume analysis are not implemented.
 
 ## Testing Status
 
-- 31 automated tests passing
+- 41 automated tests passing
 - 0 failures
 - 0 errors
 
@@ -56,22 +58,27 @@ resume parsing, and AI resume analysis are not implemented.
 - Frontend build validation passed with `npm.cmd run build`
 - Frontend lint validation passed with `npm.cmd run lint`
 
-No frontend authentication or backend API integration has been implemented yet.
+## Completed Frontend Authentication Integration
+
+- React authentication context and provider
+- Login integration with the Spring Boot backend
+- Registration integration with the Spring Boot backend
+- JWT access-token handling through the centralized authentication session helper
+- Session persistence and restoration through browser `sessionStorage`
+- Current-user hydration through `GET /api/v1/auth/me`
+- Protected and public route guards
+- Authenticated home page displaying the current user and persisted roles
+- Centralized API client with Bearer token handling for authenticated requests
+- Authentication error handling for invalid or expired sessions
+- Backend CORS configuration for the local frontend
+- Browser end-to-end authentication verification completed successfully
+- Backend validation: 41 tests passed with 0 failures and 0 errors
+- Frontend validation: lint passed and production build passed
+- Latest authentication commit: `7dcd7b3`
 
 ## Next Major Task
 
-Frontend authentication integration.
-
-Planned frontend work includes:
-
-- API client connection to the Spring Boot backend
-- Login UI
-- Registration UI
-- JWT handling
-- Authentication context/state
-- Protected routes
-- Logout
-- Integration testing against the real backend
+Dashboard UI Integration.
 
 ## Future Backend and Product Work
 

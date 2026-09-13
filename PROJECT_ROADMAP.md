@@ -56,10 +56,10 @@
 
 ### Backend Verification
 - [x] Core backend modules complete
-- [x] 31 automated tests passing with 0 failures and 0 errors
+- [x] 41 automated tests passing with 0 failures and 0 errors
 - [x] API testing with Bruno
 
-The core recruitment backend is complete and ready for frontend integration. File storage,
+The core recruitment backend is complete. File storage,
 resume parsing, AI analysis, interview scheduling, and advanced reporting remain future work.
 
 ---
@@ -73,24 +73,25 @@ resume parsing, AI analysis, interview scheduling, and advanced reporting remain
 - [x] Create TalentAI placeholder application page
 - [x] Validate frontend build and lint
 - [ ] Configure Tailwind CSS
-- [ ] Frontend authentication integration
-  - [ ] Connect API client to Spring Boot backend
-  - [ ] Login UI
-  - [ ] Registration UI
-  - [ ] JWT handling
-  - [ ] Authentication context/state
-  - [ ] Protected routes
-  - [ ] Logout
-  - [ ] Integration testing against the real backend
-- [ ] Dashboard
+- [x] Frontend authentication integration
+  - [x] Connect API client to Spring Boot backend
+  - [x] Login UI
+  - [x] Registration integration
+  - [x] JWT access-token handling
+  - [x] Authentication context and session state
+  - [x] Protected and public routes
+  - [x] Logout and invalid-session handling
+  - [x] Current-user hydration through `/api/v1/auth/me`
+  - [x] Integration testing against the real backend
+- [ ] Dashboard UI
 - [ ] Candidate Management
 - [ ] Job Management
 - [ ] Resume Metadata Management
 - [ ] Reports
 
-The frontend foundation is complete. Frontend authentication integration is the next major
-milestone. Dashboard, Candidate, Job, Resume, Reports, Interview Scheduling, and AI features
-remain incomplete.
+The frontend foundation and authentication integration are complete. Dashboard UI, Candidate,
+Job, Resume, Reports, Interview Scheduling, and AI features remain incomplete. The next major
+milestone is Dashboard UI Integration.
 
 ---
 
