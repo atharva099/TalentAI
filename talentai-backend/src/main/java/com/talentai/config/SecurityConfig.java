@@ -54,6 +54,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/v1/candidates/**").hasAnyRole("RECRUITER", "PLATFORM_ADMIN")
                         .requestMatchers("/api/v1/resumes/**").hasAnyRole("RECRUITER", "PLATFORM_ADMIN")
                         .requestMatchers("/api/v1/dashboard/**").hasAnyRole("RECRUITER", "PLATFORM_ADMIN")
+                        .requestMatchers("/api/v1/auth/me").authenticated()
                         .requestMatchers("/api/v1/auth/**").permitAll()
                         .anyRequest().authenticated())
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)

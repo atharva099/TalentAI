@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.talentai.dto.request.UserRequest;
 import com.talentai.dto.request.UserUpdateRequest;
 import com.talentai.dto.response.UserResponse;
+import com.talentai.dto.response.CurrentUserResponse;
 import com.talentai.entity.User;
 import com.talentai.exception.ApplicationException;
 import com.talentai.exception.ErrorCode;
@@ -62,6 +63,19 @@ public class UserServiceImpl implements UserService {
                 .orElseThrow(() -> new ApplicationException(ErrorCode.USER_NOT_FOUND));
 
         return UserMapper.toResponse(user);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    @Transactional(readOnly = true)
+    public CurrentUserResponse getCurrentUserByEmail(String email) {
+        String normalizedEmail = email.trim().toLowerCase(Locale.ROOT);
+        User user = userRepository.findByEmail(normalizedEmail)
+                .orElseThrow(() -> new ApplicationException(ErrorCode.USER_NOT_FOUND));
+
+        return UserMapper.toCurrentUserResponse(user);
     }
 
     /**

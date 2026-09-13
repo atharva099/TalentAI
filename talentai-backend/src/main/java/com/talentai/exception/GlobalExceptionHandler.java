@@ -111,7 +111,7 @@ public class GlobalExceptionHandler {
                 .errorCode(errorCode)
                 .message(errorCode.getDefaultMessage())
                 .requestId(requestId)
-                .validationErrors(validationErrors)
+                .validationErrors(validationErrors == null ? Map.of() : validationErrors)
                 .build();
 
         return ResponseEntity.status(errorCode.getHttpStatus()).body(response);

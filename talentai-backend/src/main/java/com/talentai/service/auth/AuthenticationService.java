@@ -3,6 +3,7 @@ package com.talentai.service.auth;
 import com.talentai.dto.request.AuthRequest;
 import com.talentai.dto.request.UserRequest;
 import com.talentai.dto.response.AuthResponse;
+import com.talentai.dto.response.CurrentUserResponse;
 
 /**
  * Defines registration and credential-authentication operations.
@@ -24,4 +25,12 @@ public interface AuthenticationService {
      * @return authentication result
      */
     AuthResponse login(AuthRequest request);
+
+    /**
+     * Retrieves the currently authenticated user's safe profile.
+     *
+     * @param email authenticated user's email address
+     * @return current user response
+     */
+    CurrentUserResponse getCurrentUser(String email);
 }

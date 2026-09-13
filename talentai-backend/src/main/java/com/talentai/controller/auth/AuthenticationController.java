@@ -3,6 +3,7 @@ package com.talentai.controller.auth;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,10 +12,12 @@ import com.talentai.dto.request.AuthRequest;
 import com.talentai.dto.request.UserRequest;
 import com.talentai.dto.response.ApiResponse;
 import com.talentai.dto.response.AuthResponse;
+import com.talentai.dto.response.CurrentUserResponse;
 import com.talentai.service.auth.AuthenticationService;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
+import org.springframework.security.core.Authentication;
 import lombok.RequiredArgsConstructor;
 
 /**
@@ -61,6 +64,23 @@ public class AuthenticationController {
 
         return ResponseEntity.ok(
                 ApiResponse.success("User authenticated successfully.", response, resolveRequestId(httpRequest)));
+    }
+
+    /**
+     * Retrieves the profile and persisted roles for the authenticated user.
+     *
+     * @param authentication current JWT-authenticated principal
+     * @param httpRequest current HTTP request
+     * @return safe current user response
+     */
+    @GetMapping("/me")
+    public ResponseEntity<ApiResponse<CurrentUserResponse>> getCurrentUser(
+            Authentication authentication,
+            HttpServletRequest httpRequest) {
+        CurrentUserResponse response = authenticationService.getCurrentUser(authentication.getName());
+
+        return ResponseEntity.ok(
+                ApiResponse.success("Current user retrieved successfully.", response, resolveRequestId(httpRequest)));
     }
 
     private String resolveRequestId(HttpServletRequest request) {

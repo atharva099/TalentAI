@@ -1,22 +1,30 @@
-import { useCallback, useMemo, useState, type ReactNode } from 'react'
-import { login as loginRequest, register as registerRequest } from '../services/api/authService'
-import type { LoginRequest, RegisterRequest } from '../types/auth'
-import { AUTH_TOKEN_STORAGE_KEY, AuthContext } from './AuthContext'
+import { useCallback, useEffect, useMemo, useState, type ReactNode } from 'react'
+import {
+  getCurrentUser,
+  login as loginRequest,
+  register as registerRequest,
+} from '../services/api/authService'
+import {
+  clearAccessToken,
+  getAccessToken,
+  setAccessToken,
+} from '../services/auth/authSession'
+import type { CurrentUser, LoginRequest, RegisterRequest } from '../types/auth'
+import { AuthContext } from './AuthContext'
 
 type AuthProviderProps = {
   children: ReactNode
 }
 
-function readStoredToken() {
-  return sessionStorage.getItem(AUTH_TOKEN_STORAGE_KEY)
-}
-
 export function AuthProvider({ children }: AuthProviderProps) {
-  const [accessToken, setAccessToken] = useState<string | null>(readStoredToken)
+  const [accessToken, setToken] = useState<string | null>(getAccessToken)
+  const [currentUser, setCurrentUser] = useState<CurrentUser | null>(null)
+  const [isInitializing, setIsInitializing] = useState(accessToken !== null)
 
   const storeToken = useCallback((token: string) => {
-    sessionStorage.setItem(AUTH_TOKEN_STORAGE_KEY, token)
     setAccessToken(token)
+    setToken(token)
+    setIsInitializing(true)
   }, [])
 
   const login = useCallback(async (request: LoginRequest) => {
@@ -30,19 +38,53 @@ export function AuthProvider({ children }: AuthProviderProps) {
   }, [storeToken])
 
   const logout = useCallback(() => {
-    sessionStorage.removeItem(AUTH_TOKEN_STORAGE_KEY)
-    setAccessToken(null)
+    clearAccessToken()
+    setToken(null)
+    setCurrentUser(null)
+    setIsInitializing(false)
   }, [])
+
+  useEffect(() => {
+    if (accessToken === null) {
+      return
+    }
+
+    let isMounted = true
+
+    getCurrentUser()
+      .then((response) => {
+        if (isMounted) {
+          setCurrentUser(response.data)
+        }
+      })
+      .catch(() => {
+        if (isMounted && getAccessToken() === null) {
+          setToken(null)
+          setCurrentUser(null)
+        }
+      })
+      .finally(() => {
+        if (isMounted) {
+          setIsInitializing(false)
+        }
+      })
+
+    return () => {
+      isMounted = false
+    }
+  }, [accessToken])
 
   const value = useMemo(
     () => ({
       isAuthenticated: accessToken !== null,
       accessToken,
+      currentUser,
+      isInitializing,
       login,
       register,
       logout,
     }),
-    [accessToken, login, register, logout],
+    [accessToken, currentUser, isInitializing, login, register, logout],
   )
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>

@@ -3,6 +3,7 @@ package com.talentai.service.user;
 import com.talentai.dto.request.UserRequest;
 import com.talentai.dto.request.UserUpdateRequest;
 import com.talentai.dto.response.UserResponse;
+import com.talentai.dto.response.CurrentUserResponse;
 import com.talentai.entity.User;
 
 /**
@@ -42,6 +43,24 @@ public final class UserMapper {
                 .firstName(user.getFirstName())
                 .lastName(user.getLastName())
                 .email(user.getEmail())
+                .build();
+    }
+
+    /**
+     * Maps a user to the safe current-user response, including persisted roles.
+     *
+     * @param user persisted user entity
+     * @return current user response
+     */
+    public static CurrentUserResponse toCurrentUserResponse(User user) {
+        return CurrentUserResponse.builder()
+                .id(user.getId())
+                .firstName(user.getFirstName())
+                .lastName(user.getLastName())
+                .email(user.getEmail())
+                .roles(user.getRoles().stream()
+                        .map(role -> role.getName())
+                        .collect(java.util.stream.Collectors.toUnmodifiableSet()))
                 .build();
     }
 

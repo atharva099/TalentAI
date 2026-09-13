@@ -5,6 +5,7 @@ import java.util.List;
 import com.talentai.dto.request.UserRequest;
 import com.talentai.dto.request.UserUpdateRequest;
 import com.talentai.dto.response.UserResponse;
+import com.talentai.dto.response.CurrentUserResponse;
 
 /**
  * Defines user lifecycle operations available to future API and authentication flows.
@@ -26,6 +27,14 @@ public interface UserService {
      * @return user response
      */
     UserResponse getUserById(Long userId);
+
+    /**
+     * Retrieves a user's safe profile and persisted roles by email.
+     *
+     * @param email authenticated user's email address
+     * @return current user response
+     */
+    CurrentUserResponse getCurrentUserByEmail(String email);
 
     /**
      * Retrieves all users.

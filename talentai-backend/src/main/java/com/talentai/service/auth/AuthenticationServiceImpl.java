@@ -12,6 +12,7 @@ import com.talentai.dto.request.AuthRequest;
 import com.talentai.dto.request.UserRequest;
 import com.talentai.dto.response.AuthResponse;
 import com.talentai.dto.response.UserResponse;
+import com.talentai.dto.response.CurrentUserResponse;
 import com.talentai.exception.ApplicationException;
 import com.talentai.exception.ErrorCode;
 import com.talentai.security.JwtService;
@@ -53,6 +54,14 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         } catch (AuthenticationException exception) {
             throw new ApplicationException(ErrorCode.AUTH_INVALID_CREDENTIALS);
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public CurrentUserResponse getCurrentUser(String email) {
+        return userService.getCurrentUserByEmail(email);
     }
 
     private AuthResponse createAuthResponse(String email) {
