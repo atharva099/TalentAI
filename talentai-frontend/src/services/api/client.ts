@@ -68,6 +68,74 @@ export async function post<TRequest, TResponse>(
   return parseResponse<TResponse>(response)
 }
 
+export async function put<TRequest, TResponse>(
+  path: string,
+  request: TRequest,
+  options: PostOptions = {},
+): Promise<ApiResponse<TResponse>> {
+  const authenticated = options.authenticated ?? true
+  const accessToken = authenticated ? getAccessToken() : null
+  const headers: Record<string, string> = {
+    'Content-Type': 'application/json',
+  }
+
+  if (accessToken) {
+    headers.Authorization = `Bearer ${accessToken}`
+  }
+
+  const response = await fetch(`${API_BASE_URL}${path}`, {
+    method: 'PUT',
+    headers,
+    body: JSON.stringify(request),
+  })
+
+  const shouldInvalidateSession = authenticated
+    && (response.status === 401
+      || (response.status === 403 && options.invalidateSessionOnForbidden === true))
+
+  if (shouldInvalidateSession) {
+    clearAccessToken()
+
+    if (window.location.pathname !== '/login') {
+      window.location.assign('/login')
+    }
+  }
+
+  return parseResponse<TResponse>(response)
+}
+
+export async function del<TResponse>(
+  path: string,
+  options: PostOptions = {},
+): Promise<ApiResponse<TResponse>> {
+  const authenticated = options.authenticated ?? true
+  const accessToken = authenticated ? getAccessToken() : null
+  const headers: Record<string, string> = {}
+
+  if (accessToken) {
+    headers.Authorization = `Bearer ${accessToken}`
+  }
+
+  const response = await fetch(`${API_BASE_URL}${path}`, {
+    method: 'DELETE',
+    headers,
+  })
+
+  const shouldInvalidateSession = authenticated
+    && (response.status === 401
+      || (response.status === 403 && options.invalidateSessionOnForbidden === true))
+
+  if (shouldInvalidateSession) {
+    clearAccessToken()
+
+    if (window.location.pathname !== '/login') {
+      window.location.assign('/login')
+    }
+  }
+
+  return parseResponse<TResponse>(response)
+}
+
 export async function get<TResponse>(
   path: string,
   options: PostOptions = {},

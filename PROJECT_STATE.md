@@ -99,9 +99,26 @@ This is the completed dashboard summary milestone. The broader future dashboard 
 system, including hiring funnel analytics, reporting, charts, candidate dashboards, and admin
 dashboard capabilities, remains incomplete.
 
+## Completed Frontend Candidate Management UI
+
+- Candidate list
+- Candidate details
+- Create candidate
+- Edit candidate
+- Delete candidate
+- Recruiter and Platform Admin authorization
+- Loading, empty, error/retry, and validation states
+- Backend Candidate API integration
+- Responsive and styled UI
+- Browser validation completed successfully
+
+This milestone covers the current planned Candidate Management UI scope only. The broader
+Candidate module, including resume handling, applications, education/experience entities,
+search, filtering, pagination, and future AI capabilities, remains outside this milestone.
+
 ## Next Major Task
 
-Candidate Management UI.
+Job Management UI.
 
 ## Future Backend and Product Work
 

@@ -91,14 +91,26 @@ resume parsing, AI analysis, interview scheduling, and advanced reporting remain
   - [x] Loading, error, and retry states
   - [x] Authenticated dashboard navigation
   - [x] Browser end-to-end validation
-- [ ] Candidate Management
+- [x] Candidate Management UI
+  - [x] Candidate list
+  - [x] Candidate details
+  - [x] Create candidate
+  - [x] Edit candidate
+  - [x] Delete candidate
+  - [x] Recruiter and Platform Admin authorization
+  - [x] Loading, empty, error/retry, and validation states
+  - [x] Backend Candidate API integration
+  - [x] Responsive and styled UI
+  - [x] Browser validation
 - [ ] Job Management
 - [ ] Resume Metadata Management
 - [ ] Reports
 
 The frontend foundation, authentication integration, and dashboard summary UI are complete.
-Candidate, Job, Resume, Reports, Interview Scheduling, AI, and broader analytics features remain
-incomplete. Candidate Management UI is the next major milestone.
+Candidate Management UI is complete for the current planned scope. The broader Candidate module,
+including resume handling, applications, education/experience entities, search, filtering,
+pagination, and future AI capabilities, remains outside this milestone. Job, Resume, Reports,
+Interview Scheduling, AI, and broader analytics features remain incomplete.
 
 ---
 

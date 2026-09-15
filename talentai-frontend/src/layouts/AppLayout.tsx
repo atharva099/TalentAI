@@ -7,6 +7,9 @@ export function AppLayout() {
   const canViewDashboard = currentUser?.roles.some(
     (role) => role === 'RECRUITER' || role === 'PLATFORM_ADMIN',
   )
+  const canManageCandidates = currentUser?.roles.some(
+    (role) => role === 'RECRUITER' || role === 'PLATFORM_ADMIN',
+  )
 
   return (
     <div className="app-shell">
@@ -15,6 +18,7 @@ export function AppLayout() {
         <nav className="app-header__nav" aria-label="Application navigation">
           <Link to="/">Home</Link>
           {canViewDashboard && <Link to="/dashboard">Dashboard</Link>}
+          {canManageCandidates && <Link to="/candidates">Candidates</Link>}
           <button type="button" onClick={logout}>Log out</button>
         </nav>
       </header>
