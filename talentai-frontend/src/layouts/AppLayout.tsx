@@ -1,12 +1,22 @@
 import { BrandMark } from '../components/BrandMark'
-import { Outlet } from 'react-router-dom'
+import { Link, Outlet } from 'react-router-dom'
+import { useAuth } from '../context/useAuth'
 
 export function AppLayout() {
+  const { currentUser, logout } = useAuth()
+  const canViewDashboard = currentUser?.roles.some(
+    (role) => role === 'RECRUITER' || role === 'PLATFORM_ADMIN',
+  )
+
   return (
     <div className="app-shell">
       <header className="app-header">
         <BrandMark />
-        <span className="app-header__status">Frontend foundation</span>
+        <nav className="app-header__nav" aria-label="Application navigation">
+          <Link to="/">Home</Link>
+          {canViewDashboard && <Link to="/dashboard">Dashboard</Link>}
+          <button type="button" onClick={logout}>Log out</button>
+        </nav>
       </header>
       <main className="app-content">
         <Outlet />

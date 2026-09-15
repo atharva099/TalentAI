@@ -1,9 +1,14 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import { AppLayout } from '../layouts/AppLayout'
+import { DashboardPage } from '../pages/DashboardPage'
 import { AuthenticatedHomePage } from '../pages/AuthenticatedHomePage'
 import { HomePage } from '../pages/HomePage'
 import { LoginPage } from '../pages/LoginPage'
-import { ProtectedRoute, PublicOnlyRoute } from './RouteGuards'
+import {
+  ProtectedRoute,
+  PublicOnlyRoute,
+  RoleProtectedRoute,
+} from './RouteGuards'
 
 export function AppRoutes() {
   return (
@@ -15,6 +20,9 @@ export function AppRoutes() {
         <Route element={<ProtectedRoute />}>
           <Route element={<AppLayout />}>
             <Route path="/" element={<AuthenticatedHomePage />} />
+            <Route element={<RoleProtectedRoute allowedRoles={['RECRUITER', 'PLATFORM_ADMIN']} />}>
+              <Route path="/dashboard" element={<DashboardPage />} />
+            </Route>
             <Route path="/foundation" element={<HomePage />} />
           </Route>
         </Route>

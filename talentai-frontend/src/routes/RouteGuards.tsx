@@ -1,5 +1,6 @@
 import { Navigate, Outlet } from 'react-router-dom'
 import { useAuth } from '../context/useAuth'
+import type { CurrentUserRole } from '../types/auth'
 
 function RouteLoadingState() {
   return (
@@ -31,6 +32,20 @@ export function PublicOnlyRoute() {
   }
 
   if (isAuthenticated) {
+    return <Navigate to="/" replace />
+  }
+
+  return <Outlet />
+}
+
+type RoleProtectedRouteProps = {
+  allowedRoles: CurrentUserRole[]
+}
+
+export function RoleProtectedRoute({ allowedRoles }: RoleProtectedRouteProps) {
+  const { currentUser } = useAuth()
+
+  if (!currentUser || !currentUser.roles.some((role) => allowedRoles.includes(role))) {
     return <Navigate to="/" replace />
   }
 

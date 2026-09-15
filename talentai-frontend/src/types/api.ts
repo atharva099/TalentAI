@@ -14,3 +14,9 @@ export type ApiErrorResponse = {
   requestId: string | null
   validationErrors?: Record<string, string[]>
 }
+
+export type DashboardSummary = {
+  candidateCount: number
+  jobCount: number
+  resumeCount: number
+}

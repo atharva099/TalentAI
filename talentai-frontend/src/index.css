@@ -44,6 +44,30 @@ a {
   padding: 28px 32px;
 }
 
+.app-header__nav {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.app-header__nav a {
+  color: #34557f;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.app-header__nav button,
+.dashboard-state button {
+  padding: 9px 14px;
+  border: 0;
+  border-radius: 9px;
+  color: #fff;
+  background: #246bce;
+  cursor: pointer;
+  font-weight: 700;
+}
+
 .app-header__status,
 .welcome-card__eyebrow {
   color: #5b6b88;
@@ -147,6 +171,86 @@ a {
   text-align: center;
 }
 
+.dashboard-page {
+  width: min(960px, 100%);
+}
+
+.dashboard-page__intro {
+  margin-bottom: 32px;
+}
+
+.dashboard-page__eyebrow {
+  margin: 0 0 12px;
+  color: #246bce;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.dashboard-page h1 {
+  margin: 0;
+  color: #172033;
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  letter-spacing: -0.06em;
+}
+
+.dashboard-page__intro > p:last-child {
+  margin: 14px 0 0;
+  color: #5b6b88;
+  font-size: 1.05rem;
+}
+
+.dashboard-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  width: 100%;
+}
+
+.dashboard-summary-card {
+  padding: 28px;
+  border: 1px solid #dce4f0;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 14px 35px rgba(31, 61, 104, 0.08);
+}
+
+.dashboard-summary-card p {
+  margin: 0;
+  color: #5b6b88;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.dashboard-summary-card strong {
+  display: block;
+  margin-top: 18px;
+  color: #172033;
+  font-size: 2.6rem;
+  letter-spacing: -0.05em;
+}
+
+.dashboard-state {
+  width: min(560px, 100%);
+  padding: 40px;
+  border: 1px solid #dce4f0;
+  border-radius: 18px;
+  background: #fff;
+  color: #5b6b88;
+  text-align: center;
+}
+
+.dashboard-state h1 {
+  margin: 0;
+  color: #172033;
+  font-size: 1.6rem;
+}
+
+.dashboard-state p {
+  margin: 14px 0 24px;
+}
+
 @media (max-width: 640px) {
   .app-header {
     align-items: flex-start;
@@ -159,6 +263,12 @@ a {
     text-align: right;
   }
 
+  .app-header__nav {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+
   .app-content {
     padding: 24px 20px 48px;
   }
@@ -169,6 +279,10 @@ a {
 
   .app-footer {
     padding: 20px;
+  }
+
+  .dashboard-summary-grid {
+    grid-template-columns: 1fr;
   }
 }
 

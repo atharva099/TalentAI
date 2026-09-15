@@ -83,15 +83,22 @@ resume parsing, AI analysis, interview scheduling, and advanced reporting remain
   - [x] Logout and invalid-session handling
   - [x] Current-user hydration through `/api/v1/auth/me`
   - [x] Integration testing against the real backend
-- [ ] Dashboard UI
+- [x] Dashboard UI Integration
+  - [x] Protected `/dashboard` route
+  - [x] Dashboard summary API integration
+  - [x] Candidates, Jobs, and Resumes summary cards
+  - [x] Recruiter and Platform Admin authorization
+  - [x] Loading, error, and retry states
+  - [x] Authenticated dashboard navigation
+  - [x] Browser end-to-end validation
 - [ ] Candidate Management
 - [ ] Job Management
 - [ ] Resume Metadata Management
 - [ ] Reports
 
-The frontend foundation and authentication integration are complete. Dashboard UI, Candidate,
-Job, Resume, Reports, Interview Scheduling, and AI features remain incomplete. The next major
-milestone is Dashboard UI Integration.
+The frontend foundation, authentication integration, and dashboard summary UI are complete.
+Candidate, Job, Resume, Reports, Interview Scheduling, AI, and broader analytics features remain
+incomplete. Candidate Management UI is the next major milestone.
 
 ---
 

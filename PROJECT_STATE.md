@@ -76,9 +76,32 @@ resume parsing, and AI resume analysis are not implemented.
 - Frontend validation: lint passed and production build passed
 - Latest authentication commit: `7dcd7b3`
 
+## Completed Frontend Dashboard UI Integration
+
+- Protected `/dashboard` route
+- Dashboard summary API integration through `GET /api/v1/dashboard/summary`
+- Candidates, Jobs, and Resumes summary cards using backend values
+- Recruiter and Platform Admin authorization
+- Loading, error, and retry behavior
+- Authenticated Dashboard navigation
+- Browser end-to-end validation completed successfully:
+  - Recruiter dashboard access passed
+  - Dashboard API returned HTTP 200
+  - Summary cards rendered actual backend values
+  - Refresh/session persistence passed
+  - Candidate protection returned the expected frontend redirect and backend 403
+  - Logout returned to `/login`
+  - No unexpected runtime or console errors
+- Frontend lint validation passed
+- Frontend production build validation passed
+
+This is the completed dashboard summary milestone. The broader future dashboard and analytics
+system, including hiring funnel analytics, reporting, charts, candidate dashboards, and admin
+dashboard capabilities, remains incomplete.
+
 ## Next Major Task
 
-Dashboard UI Integration.
+Candidate Management UI.
 
 ## Future Backend and Product Work
 
@@ -87,7 +110,7 @@ Dashboard UI Integration.
 - AI resume analysis, scoring, ranking, and suggestions
 - Interview scheduling
 - Advanced reporting
-- Dashboard UI
+- Broader dashboard and analytics system
 - Candidate Management UI
 - Job Management UI
 - Resume UI
